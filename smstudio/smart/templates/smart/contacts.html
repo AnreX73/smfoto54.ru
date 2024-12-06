@@ -1,0 +1,88 @@
+{% extends 'smart/base.html' %}
+{% load sm_tags %}
+
+{% block content %}
+ <!-- меню мининавигации-->
+{%show_mini_navigation%}
+ <!-- конец меню мининавигации-->
+<h1 class="contacts-title"> {{title}} </h1>
+ <!-- общая обертка-->
+<div class="contacts-wrapper">
+
+ <!-- обертка текстовой части-->
+<div class="contacts-info-wrapper">
+ <!-- логотип с подписью-->
+<a class="contacts-logo" href='{% url "home" %}'>
+<div class="contacts-logo"> {{contacts_logo.annotations1}}
+ <img class="contacts-image"
+          src="{{contacts_logo.image.url}}"
+          alt="logo"
+        /></div></a>
+ <!-- конец логотип с подписью-->
+
+ <!-- адрес-->
+<div class="contacts-adress">
+ <img class="contacts-image"
+          src="{{contacts_adress.image.url}}"
+          alt="logo"/>
+</div>
+ <!-- конец адрес-->
+      <!-- режим работы-->
+  <div class="work-time">
+  <p>{{work_time.title}}</p>
+  <p>{{work_time.annotations1|linebreaksbr}}</p>
+  <p>{{work_time.annotations2|linebreaksbr}}</p>
+  </div>
+ <!-- конец режим работы-->
+ <!-- телефоны-->
+<div class="contacts_phone">
+     <img class="nav_image-mini"
+          src="{{contacts_phone.image.url}}"
+          alt="logo"/>
+    <a href="tel:{{short_phone1}}">{{contacts_phone.annotations1}}</a>
+    <a href="tel:{{short_phone2}}">{{contacts_phone.annotations2}}</a>
+</div>
+<!-- конец телефоны-->
+
+<!-- email-->
+<div class="contacts-mail">
+    <img class="mail-image"
+          src="{{contacts_mail.image.url}}"
+          alt="logo"/>
+{{contacts_mail.annotations1}}
+</div>
+<!-- конец email-->
+</div>
+<!-- конец обертка текстовой части-->
+
+
+ <!-- карта-->
+<div class="map">
+    {%autoescape off%}
+    <script {{contacts_map.annotations2}}></script>
+    {%endautoescape off%}
+</div>
+    <div class="mini-map">
+    {%autoescape off%}
+    <script {{contacts_mini_map.annotations2}}></script>
+    {%endautoescape off%}
+</div>
+<!-- конец карта-->
+</div>
+ <!-- конец общая обертка-->
+<div class="contacts-footer">
+    <a href='{% url "home" %}'>
+    <div class="contacts-footer-item">
+        {{main_link.annotations2}}
+    </div></a>
+     <a href='{% url "services" %}'>
+    <div class="contacts-footer-item">
+    {{services_link.annotations1}}
+    </div></a>
+    <a href='{% url "souvenirs" %}'>
+    <div class="contacts-footer-item">
+    {{souvenirs_link.annotations1}}
+    </div></a>
+</div>
+
+{% endblock content %}

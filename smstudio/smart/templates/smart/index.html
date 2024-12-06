@@ -1,0 +1,76 @@
+{% extends 'smart/base.html' %}
+{% load sm_tags %}
+
+{% block content %}
+<!--   модальное окно новости  -->
+ {% if posts %}
+<div class="post-modal" data-modal="1">
+    
+    <span class="post-modal__cross" > Х </span>
+    <div class="post-modal-slider swiper">
+    <div class="post-wrapper swiper-wrapper">
+    {% for post in posts %}
+    {% if post.is_published %}
+    <div class="post-content swiper-slide"> 
+    <h3 class="post-modal__title">{{post.title}}</h3>
+    <div class="post-modal__content">{{post.content|safe}}</div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    
+    </div>
+    
+    </div>
+    <div class="swiper-pagination post-pagination"></div>
+    <div class="left-arrow swiper-button-prev"></div>
+    <div class="right-arrow swiper-button-next"></div>   
+</div>
+{% endif %}
+ <div class="post-overlay" id="post-overlay-modal"></div>
+ 
+  <!--  конец модальное окно новости  -->
+
+ <!-- меню мининавигации-->
+{%show_mini_navigation%}
+ <!-- конец меню мининавигации-->
+
+<div class="menu-wrapper">
+<!-- меню фотоуслуг-->
+
+  <div class="services-wrapper ">
+    <h1 class="services-title"> {{services_title}} </h1>
+    <div class="services_menu ">
+    {% for serv in services %}
+         {% if serv.is_published %}
+        <a href="{{serv.get_absolute_url}}"><figure class="menu-item"> <img class="menu-image" src="{{serv.menu_image.url}}" alt="{{serv.title}}" />
+            <figcaption> {{serv.title}}</figcaption></figure></a>
+        {%endif%}
+    {% endfor %}
+    </div>
+    </div>
+    <!-- конец меню фотоуслуг-->
+
+  <!-- меню навигации-->
+{% show_navigaition %}
+<!-- конец меню навигации-->
+
+
+<!-- меню фотосувениров-->
+<div class="services-wrapper ">
+    <h1 class="services-title"> {{souvenirs_title}} </h1>
+    <div class="services_menu ">
+{% for serv in souvenirs %}
+         {% if serv.is_published %}
+        <a href="{{serv.get_absolute_url}}"><figure class="menu-item"> <img class="menu-image" src="{{serv.menu_image.url}}" alt="{{serv.title}}" /> <figcaption> {{serv.title}}</figcaption></figure></a>
+        {%endif%}
+    {% endfor %}
+    </div>
+</div>
+    <!--конец  меню фотосувениров-->
+
+</div>
+
+{% endblock content %}
+
+
+

@@ -1,0 +1,27 @@
+<!-- меню навигации-->
+    <div class="mini_nav_wrapper">
+
+      <a href='{% url "home" %}'><div class="mini_nav_item mini_logo_item">
+        <img class="mini_nav_image"
+          src="{{navlogo.image.url}}"
+          alt="logo"
+        />
+      </div></a>
+
+      <a href='{% url "services" %}'><div class="mini_nav_item mini_services_item">
+       {{servicesIcon.annotations1}}
+      </div></a>
+
+      <a href='{% url "souvenirs" %}'><div class="mini_nav_item mini_services_item">
+       {{souvenirsIcon.annotations1}}
+      </div></a>
+
+       <a href='{% url "contacts" %}'>
+           <div class="mini_nav_item mini_adress_item">
+       {{adressIcon.annotations1}}</div>
+       </a>
+
+    </div>
+<div class="margin-div"></div>
+<div class="margin-div-2"></div>
+<!-- конец меню навигации-->

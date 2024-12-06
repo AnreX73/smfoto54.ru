@@ -1,0 +1,48 @@
+<!-- меню навигации-->
+    <div class="nav_wrapper">
+
+      <a href='{% url "home" %}'><div class="nav_item logo_item">
+        <p>{{navlogo.annotations1}}</p>
+
+        <img class="nav_image"
+          src="{{navlogo.image.url}}"
+          alt="logo"
+        />
+      </div></a>
+
+      <a href='{% url "services" %}'><div class="nav_item services_item">
+        <img class="nav_image serv-image"
+          src="{{servicesIcon.image.url}}"
+          alt="{{servicesIcon.title}}"
+        />
+      </div></a>
+
+      <a href='{% url "souvenirs" %}'><div class="nav_item services_item">
+        <img class="nav_image serv-image"
+          src="{{souvenirsIcon.image.url}}"
+          alt="{{souvenirsIcon.title}}"
+        />
+      </div></a>
+      <a href='{% url "contacts" %}'>
+      <div class="nav_item adress_item">
+        <img class="nav_image"
+          src="{{adressIcon.image.url}}"
+          alt="{{adressIcon.title}}"
+        /></div></a>
+
+        <a href='{% url "contacts" %}'>
+        <p class="nav-contacts-link">{{adressIcon.annotations2}}</p>
+        </a>
+
+      <a href='{% url "contacts" %}'>
+      <div class="nav_item phone_item">
+        <img class="nav_image"
+          src="{{phoneIcon.image.url}}"
+          alt="{{phoneIcon.title}}"
+        /></a>
+        <p>{{phoneIcon.annotations1}}</p>
+        <p>{{phoneIcon.annotations2}}</p>
+      </div>
+
+    </div>
+<!-- конец меню навигации-->

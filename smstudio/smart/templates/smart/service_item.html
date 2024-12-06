@@ -1,0 +1,114 @@
+{% extends 'smart/base.html' %}
+{% load sm_tags %}
+{% block content %}
+   
+{%show_mini_navigation%}
+<div class="item-allcontent-wrapper">
+ <!-- меню навигации-->
+{% show_navigaition %}
+    <!-- конец меню навигации-->
+  
+    <div class="item-content-wrapper">
+
+     <div class="item-title-wrapper">
+        <h1 class="item-title">
+            <span>{{show_service.cat}}>></span>  {{title}}
+        </h1>
+    </div>   
+  
+
+    <div class="item-description-wrapper">
+        <div class="item-description-image"><img class="item_image" src="{{show_service.page_image.url}}" alt="{{serv.title}}"></div> 
+        <div class="item-description">{{show_service.annotation|safe}}
+            <div class="item-gallery-link" data-gallery-link="{{show_service.slug}}">{{show_service.gallery_link|safe}}</div> 
+            <div class="gallery-overlay" id="gallery-overlay-modal"></div>
+            <div class="gallery-modal" data-gallery="{{show_service.slug}}">
+                <span class="close-extra gallery-close">&times;</span>
+            <div class="image-slider swiper">
+                <div class="slider-wrapper swiper-wrapper">
+                    {% for gal in gallery %}
+                    {% if gal.galleryLink_id == show_service.id %}
+                    <div class="gal-content swiper-slide">  
+                      <div class="item-gal-image" >
+                          {% if gal.gallery_image %}
+                        <img class="gal_image" src="{{gal.gallery_image.url}}" alt="{{gal.title}}">
+                          {% endif %}
+                      </div>
+                      <div class="gal-text"> {{gal.content|safe}}</div>
+                   </div> 
+                    {%endif%}
+                    {% endfor %}
+                    
+                </div> 
+            <div class="swiper-pagination gal-pagination"></div>
+
+            <!-- If we need navigation buttons -->
+            <div class="left-arrow swiper-button-prev"></div>
+            <div class="right-arrow swiper-button-next"></div>
+            
+        </div>
+        </div>
+        </div> 
+       
+    </div> 
+
+    <div class="prices-wrapper">
+        {% for price in prices %}
+        {% if price.is_published %}
+        {% if price.service_id == show_service.id %}
+        <div class="price-block">
+            <div><b>{{price.title}}</b></div>
+            <div class="price-content">{{price.content|safe}}</div>
+            {% if price.extraLink %}
+                <div class="price-link js-open-modal" data-modal="{{price.slug}}">{{price.extraLink}}</div>
+            {% endif %}
+            {% for extra in extracontent %}
+            {% if extra%}
+            {% if extra.extraContent_id == price.id %}
+              <div class="extracontent-wrapper-modal" data-modal-div="{{price.slug}}">
+              <div class="extracontent">
+                <span class="extra-close close-extra">&times;</span>
+                <h1 class="extra-title">{{extra.title}}</h1>
+                {% if extra.extra_image%}
+                <img class="extra-image" src="{{extra.extra_image.url}}" alt="{{extra.title}}"/> 
+                {%endif%} 
+                <div class="extra-paragraph"><p>{{extra.content|safe}}</p></div>
+              </div>     
+              </div>     
+              {%endif%} 
+              {%endif%}
+        {% endfor %}
+        </div>
+
+        {%endif%}
+        {%endif%}
+        {% endfor %}
+
+
+   </div>
+    
+   
+        
+
+    <div class="price-footer">
+        {% if show_service.cat_id == 1 %}
+        {% for serv in services %}
+         {% if serv.is_published %}
+         <a href="{{serv.get_absolute_url}}">
+           <div class="price-footer-menu">{{serv.title}}</div> </a>
+        {%endif%}
+        {% endfor %}
+        {% else %}
+        {% for serv in souvenirs %}
+         {% if serv.is_published %}
+         <a href="{{serv.get_absolute_url}}">
+           <div class="price-footer-menu">{{serv.title}}</div> </a>
+        {%endif%}
+        {% endfor %}
+
+         {%endif%}
+    </div>
+
+</div> 
+
+{% endblock content %}
