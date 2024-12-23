@@ -123,6 +123,13 @@ class GalleryAdmin(admin.ModelAdmin):
     getHtmlPhoto.short_description = 'миниатюра'
 
 
+@admin.register(PrintBasePrice)
+class InCityRegionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title', 'base_price')
+    list_display_links = ('id', 'title')
+    search_fields = ('title',)
+    save_on_top = True
+
 
 admin.site.register(Services, ServicesAdmin)
 admin.site.register(Category, CategoryAdmin)

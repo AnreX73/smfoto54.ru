@@ -161,11 +161,23 @@ class Gallery(models.Model):
         ordering = ["id"]
 
 
-class PaperType(models.Model):
-    name = models.CharField(max_length=100, verbose_name="тип бумаги")
-    slug = models.SlugField(
-        unique=True, max_length=100, db_index=True, verbose_name="URL"
+class PrintBasePrice(models.Model):
+    title = models.CharField(max_length=100, verbose_name="Заголовок")
+    service = models.ForeignKey(
+        Services, on_delete=models.CASCADE, verbose_name="Услуга"
     )
+    circulation = models.CharField(max_length=100,null=True,blank=True, verbose_name="тираж")
+    description = RichTextField(blank=True, verbose_name=' описание ')
+    base_price = models.PositiveIntegerField(verbose_name="Базовая цена")
+
+    class Meta:
+        verbose_name = "Базовая цена"
+        verbose_name_plural = "Базовая цена"
+        ordering = ["id"]
+
+
+class PaperType(models.Model):
+    title = models.CharField(max_length=100, verbose_name="тип бумаги")
     size = models.CharField(max_length=100, verbose_name="размер")
     density = models.CharField(max_length=100, verbose_name="плотность")
     price = models.PositiveIntegerField(verbose_name="Цена")
@@ -183,3 +195,8 @@ class TonerConsumption(models.Model):
     image = models.ImageField(
         upload_to="images", blank=True, verbose_name="Изображение"
     )
+
+    class Meta:
+        verbose_name = "расход тонера"
+        verbose_name_plural = "расход тонера"
+        ordering = ["id"]
