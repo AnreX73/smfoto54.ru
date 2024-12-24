@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
       el: '.swiper-scrollbar',
     },
   }); 
-
+ 
 if (document.querySelector('.post-modal__cross')){
     overlay      = document.querySelector('#post-overlay-modal'),
     closeButton = document.querySelector('.post-modal__cross');

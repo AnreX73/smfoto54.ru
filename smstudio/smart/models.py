@@ -181,6 +181,7 @@ class PaperType(models.Model):
     size = models.CharField(max_length=100, verbose_name="размер")
     density = models.CharField(max_length=100, verbose_name="плотность")
     price = models.PositiveIntegerField(verbose_name="Цена")
+    description = RichTextField(blank=True, verbose_name=' описание ')
     is_published = models.BooleanField(default=True, verbose_name="публикация")
 
     class Meta:
@@ -195,6 +196,7 @@ class TonerConsumption(models.Model):
     image = models.ImageField(
         upload_to="images", blank=True, verbose_name="Изображение"
     )
+    description = RichTextField(blank=True, verbose_name=' описание ')
 
     class Meta:
         verbose_name = "расход тонера"

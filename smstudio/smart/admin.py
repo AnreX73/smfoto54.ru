@@ -124,8 +124,23 @@ class GalleryAdmin(admin.ModelAdmin):
 
 
 @admin.register(PrintBasePrice)
-class InCityRegionAdmin(admin.ModelAdmin):
+class PrintBasePriceAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'base_price')
+    list_display_links = ('id', 'title')
+    search_fields = ('title',)
+    save_on_top = True
+
+@admin.register(PaperType)
+class PaperTypeAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title', 'size', 'density', 'price')
+    list_display_links = ('id', 'title')
+    search_fields = ('title',)
+    save_on_top = True
+
+
+@admin.register(TonerConsumption)
+class TonerConsumptionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title', 'price_plus') 
     list_display_links = ('id', 'title')
     search_fields = ('title',)
     save_on_top = True
