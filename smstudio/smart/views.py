@@ -63,3 +63,15 @@ def contacts(request):
 
     }
     return render(request, 'smart/contacts.html', context=context)
+
+
+def alt_show_service(request, service_slug):
+    service = get_object_or_404(Services, slug=service_slug)
+    base_prices = PrintBasePrice.objects.all() 
+    context = {
+        'service': service,
+        'base_prices': base_prices,
+        
+        
+    }
+    return render(request, 'smart/alt_service_item.html', context=context)

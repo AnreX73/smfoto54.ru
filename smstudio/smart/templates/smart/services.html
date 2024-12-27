@@ -18,9 +18,13 @@
      <div class="services-page-menu">
     {% for serv in services %}
          {% if serv.is_published %}
-         <a href="{{serv.get_absolute_url}}"> <figure class="menu-item"> <img class="services-page-image" src="{{serv.menu_image.url}}" alt="{{serv.title}}" />
+         {% if serv.slug == 'kopirovanie-i-raspechatka'%}
+         <a href="{% url 'alt_show_service' service_slug=serv.slug %}"> <img class="services-page-image" src="{{serv.menu_image.url}}" alt="{{serv.title}}%}}" />
+         {% else %}
+            <a href="{{serv.get_absolute_url}}"> <figure class="menu-item"> <img class="services-page-image" src="{{serv.menu_image.url}}" alt="{{serv.title}}" />
         <figcaption> {{serv.title}}</figcaption> </figure> </a>
-        {%endif%}
+        {% endif %}
+        {% endif %}
     {% endfor %}
     </div>
     </div>
